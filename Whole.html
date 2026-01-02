@@ -177,6 +177,49 @@ body {
     padding: 20px;
 }
 
+.legend {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom: 40px;
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.legend h2 {
+    font-family: 'Times New Roman', serif;
+    font-size: 2em;
+    color: #8B0000;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.legend-color {
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.legend-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1em;
+    color: #333;
+    font-weight: 500;
+}
+
 .bible-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -206,7 +249,7 @@ body {
 }
 
 .new-testament-header {
-    background: linear-gradient(135deg, #F08080 0%, #CD5C5C 100%);
+    background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);
 }
 
 .testament-count {
@@ -225,23 +268,55 @@ body {
 }
 
 .book-item {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     padding: 15px 20px;
     border-radius: 8px;
     text-align: center;
     font-family: 'Arial', sans-serif;
     font-size: 1.1em;
-    color: #333;
+    color: white;
     border: 2px solid transparent;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-weight: 500;
 }
 
-.old-testament-section .book-item {
-    border-left: 4px solid #8B0000;
+/* Law - Purple gradient */
+.law {
+    background: linear-gradient(135deg, #CCCCFF 0%, #B8B8FF 50%, #A4A4FF 100%);
 }
 
-.new-testament-section .book-item {
-    border-left: 4px solid #FF69B4;
+/* History - Green gradient */
+.history {
+    background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+}
+
+/* Poetry - Cyan/Teal gradient */
+.poetry {
+    background: linear-gradient(135deg, #008B8B 0%, #20B2AA 100%);
+}
+
+/* Prophets - Blue gradient (updated) */
+.prophets {
+    background: linear-gradient(135deg, #b0cbeb 0%, #6b9ad8 50%, #156de0 100%);
+}
+
+/* Gospels - Pink/Crimson gradient */
+.gospels {
+    background: linear-gradient(135deg, #DC143C 0%, #FF1493 100%);
+}
+
+/* Church History - Gray gradient */
+.church-history {
+    background: linear-gradient(135deg, #696969 0%, #808080 100%);
+}
+
+/* Letters - Beige/Peru gradient */
+.letters {
+    background: linear-gradient(135deg, #CD853F 0%, #DEB887 100%);
+}
+
+/* Vision - Gold gradient */
+.vision {
+    background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
 }
 
 footer {
@@ -312,6 +387,15 @@ footer {
         padding: 12px 20px;
     }
     
+    .legend-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+    }
+    
+    .legend-label {
+        font-size: 0.95em;
+    }
+    
     .stat-number {
         font-size: 2em;
     }
@@ -335,11 +419,11 @@ footer {
 
 <nav class="topnav">
     <div class="nav-container">
-        <a href="index.html" class="logo-link">
+        <a href="Mainpage.html" class="logo-link">
             <img src="Logo.jpg" alt="Logo">
         </a>
         <div class="nav-links">
-            <a href="index.html">Home</a>
+            <a href="Mainpage.html">Home</a>
             <a href="Sections.html">Bible Sections</a>
             <a href="Translation.html">Bible Translations</a>
             <a href="Whole.html" class="active">Whole Bible</a>
@@ -367,6 +451,44 @@ footer {
 </div>
 
 <div class="content-wrapper">
+    <div class="legend">
+        <h2>Section Color Legend</h2>
+        <div class="legend-grid">
+            <div class="legend-item">
+                <div class="legend-color law"></div>
+                <span class="legend-label">Law</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color history"></div>
+                <span class="legend-label">History</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color poetry"></div>
+                <span class="legend-label">Poetry</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color prophets"></div>
+                <span class="legend-label">Prophets</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color gospels"></div>
+                <span class="legend-label">Gospels</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color church-history"></div>
+                <span class="legend-label">Church History</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color letters"></div>
+                <span class="legend-label">Letters</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color vision"></div>
+                <span class="legend-label">Vision</span>
+            </div>
+        </div>
+    </div>
+    
     <div class="bible-container">
         <div class="testament-section old-testament-section">
             <div class="testament-header old-testament-header">
@@ -374,45 +496,45 @@ footer {
                 <span class="testament-count">39 Books</span>
             </div>
             <div class="books-grid">
-                <div class="book-item">Genesis</div>
-                <div class="book-item">Exodus</div>
-                <div class="book-item">Leviticus</div>
-                <div class="book-item">Numbers</div>
-                <div class="book-item">Deuteronomy</div>
-                <div class="book-item">Joshua</div>
-                <div class="book-item">Judges</div>
-                <div class="book-item">Ruth</div>
-                <div class="book-item">1 Samuel</div>
-                <div class="book-item">2 Samuel</div>
-                <div class="book-item">1 Kings</div>
-                <div class="book-item">2 Kings</div>
-                <div class="book-item">1 Chronicles</div>
-                <div class="book-item">2 Chronicles</div>
-                <div class="book-item">Ezra</div>
-                <div class="book-item">Nehemiah</div>
-                <div class="book-item">Esther</div>
-                <div class="book-item">Job</div>
-                <div class="book-item">Psalms</div>
-                <div class="book-item">Proverbs</div>
-                <div class="book-item">Ecclesiastes</div>
-                <div class="book-item">Song of Solomon</div>
-                <div class="book-item">Isaiah</div>
-                <div class="book-item">Jeremiah</div>
-                <div class="book-item">Lamentations</div>
-                <div class="book-item">Ezekiel</div>
-                <div class="book-item">Daniel</div>
-                <div class="book-item">Hosea</div>
-                <div class="book-item">Joel</div>
-                <div class="book-item">Amos</div>
-                <div class="book-item">Obadiah</div>
-                <div class="book-item">Jonah</div>
-                <div class="book-item">Micah</div>
-                <div class="book-item">Nahum</div>
-                <div class="book-item">Habakkuk</div>
-                <div class="book-item">Zephaniah</div>
-                <div class="book-item">Haggai</div>
-                <div class="book-item">Zechariah</div>
-                <div class="book-item">Malachi</div>
+                <div class="book-item law">Genesis</div>
+                <div class="book-item law">Exodus</div>
+                <div class="book-item law">Leviticus</div>
+                <div class="book-item law">Numbers</div>
+                <div class="book-item law">Deuteronomy</div>
+                <div class="book-item history">Joshua</div>
+                <div class="book-item history">Judges</div>
+                <div class="book-item history">Ruth</div>
+                <div class="book-item history">1 Samuel</div>
+                <div class="book-item history">2 Samuel</div>
+                <div class="book-item history">1 Kings</div>
+                <div class="book-item history">2 Kings</div>
+                <div class="book-item history">1 Chronicles</div>
+                <div class="book-item history">2 Chronicles</div>
+                <div class="book-item history">Ezra</div>
+                <div class="book-item history">Nehemiah</div>
+                <div class="book-item history">Esther</div>
+                <div class="book-item poetry">Job</div>
+                <div class="book-item poetry">Psalms</div>
+                <div class="book-item poetry">Proverbs</div>
+                <div class="book-item poetry">Ecclesiastes</div>
+                <div class="book-item poetry">Song of Solomon</div>
+                <div class="book-item prophets">Isaiah</div>
+                <div class="book-item prophets">Jeremiah</div>
+                <div class="book-item prophets">Lamentations</div>
+                <div class="book-item prophets">Ezekiel</div>
+                <div class="book-item prophets">Daniel</div>
+                <div class="book-item prophets">Hosea</div>
+                <div class="book-item prophets">Joel</div>
+                <div class="book-item prophets">Amos</div>
+                <div class="book-item prophets">Obadiah</div>
+                <div class="book-item prophets">Jonah</div>
+                <div class="book-item prophets">Micah</div>
+                <div class="book-item prophets">Nahum</div>
+                <div class="book-item prophets">Habakkuk</div>
+                <div class="book-item prophets">Zephaniah</div>
+                <div class="book-item prophets">Haggai</div>
+                <div class="book-item prophets">Zechariah</div>
+                <div class="book-item prophets">Malachi</div>
             </div>
         </div>
 
@@ -422,33 +544,33 @@ footer {
                 <span class="testament-count">27 Books</span>
             </div>
             <div class="books-grid">
-                <div class="book-item">Matthew</div>
-                <div class="book-item">Mark</div>
-                <div class="book-item">Luke</div>
-                <div class="book-item">John</div>
-                <div class="book-item">Acts</div>
-                <div class="book-item">Romans</div>
-                <div class="book-item">1 Corinthians</div>
-                <div class="book-item">2 Corinthians</div>
-                <div class="book-item">Galatians</div>
-                <div class="book-item">Ephesians</div>
-                <div class="book-item">Philippians</div>
-                <div class="book-item">Colossians</div>
-                <div class="book-item">1 Thessalonians</div>
-                <div class="book-item">2 Thessalonians</div>
-                <div class="book-item">1 Timothy</div>
-                <div class="book-item">2 Timothy</div>
-                <div class="book-item">Titus</div>
-                <div class="book-item">Philemon</div>
-                <div class="book-item">Hebrews</div>
-                <div class="book-item">James</div>
-                <div class="book-item">1 Peter</div>
-                <div class="book-item">2 Peter</div>
-                <div class="book-item">1 John</div>
-                <div class="book-item">2 John</div>
-                <div class="book-item">3 John</div>
-                <div class="book-item">Jude</div>
-                <div class="book-item">Revelation</div>
+                <div class="book-item gospels">Matthew</div>
+                <div class="book-item gospels">Mark</div>
+                <div class="book-item gospels">Luke</div>
+                <div class="book-item gospels">John</div>
+                <div class="book-item church-history">Acts</div>
+                <div class="book-item letters">Romans</div>
+                <div class="book-item letters">1 Corinthians</div>
+                <div class="book-item letters">2 Corinthians</div>
+                <div class="book-item letters">Galatians</div>
+                <div class="book-item letters">Ephesians</div>
+                <div class="book-item letters">Philippians</div>
+                <div class="book-item letters">Colossians</div>
+                <div class="book-item letters">1 Thessalonians</div>
+                <div class="book-item letters">2 Thessalonians</div>
+                <div class="book-item letters">1 Timothy</div>
+                <div class="book-item letters">2 Timothy</div>
+                <div class="book-item letters">Titus</div>
+                <div class="book-item letters">Philemon</div>
+                <div class="book-item letters">Hebrews</div>
+                <div class="book-item letters">James</div>
+                <div class="book-item letters">1 Peter</div>
+                <div class="book-item letters">2 Peter</div>
+                <div class="book-item letters">1 John</div>
+                <div class="book-item letters">2 John</div>
+                <div class="book-item letters">3 John</div>
+                <div class="book-item letters">Jude</div>
+                <div class="book-item vision">Revelation</div>
             </div>
         </div>
     </div>
@@ -482,5 +604,4 @@ scrollButton.addEventListener('click', () => {
 </script>
 
 </body>
-
 </html>
