@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bible Translations</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #87CFFB 0%, #5AB9EA 50%, #3A9FD8 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.topnav {
+    background: linear-gradient(90deg, #8B0000 0%, #A52A2A 100%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo-link {
+    margin-right: 30px;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.logo-link img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #DAA520;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.nav-links {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.topnav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.topnav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #DAA520;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.topnav a:hover {
+    background-color: #DAA520;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(218, 165, 32, 0.4);
+}
+
+.topnav a:hover::before {
+    width: 80%;
+}
+
+.topnav a.active {
+    background-color: #FF7F50;
+    color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(255, 127, 80, 0.4);
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,248,255,0.95) 100%);
+    margin: 40px auto;
+    max-width: 1200px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    font-family: 'Times New Roman', serif;
+    font-size: 4em;
+    color: #8B0000;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-subtitle {
+    font-size: 1.4em;
+    color: #555;
+    margin-bottom: 15px;
+    font-family: 'Arial', sans-serif;
+}
+
+.hero-note {
+    font-size: 1.1em;
+    color: #666;
+    font-style: italic;
+    padding: 15px;
+    background: rgba(218, 165, 32, 0.1);
+    border-left: 4px solid #DAA520;
+    border-radius: 8px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.info-banner {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom: 40px;
+    text-align: center;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.info-banner p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.3em;
+    color: #444;
+    line-height: 1.8;
+}
+
+.info-banner .highlight {
+    color: #8B0000;
+    font-weight: bold;
+    background: linear-gradient(120deg, #FFE5B4 0%, #FFDAB9 100%);
+    padding: 3px 10px;
+    border-radius: 5px;
+}
+
+.translation-section {
+    margin-bottom: 40px;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.translation-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.translation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #8B0000, #DAA520, #FF7F50);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.translation-card:hover::before {
+    transform: scaleX(1);
+}
+
+.translation-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.translation-card h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 2.2em;
+    color: #8B0000;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.language-icon {
+    font-size: 1.3em;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.translation-list {
+    display: grid;
+    gap: 15px;
+}
+
+.translation-item {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #8B0000;
+    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    position: relative;
+    overflow: hidden;
+}
+
+.translation-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(218, 165, 32, 0.2), transparent);
+    transition: right 0.5s ease;
+}
+
+.translation-item:hover {
+    transform: translateX(10px);
+    border-left-width: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.translation-item:hover::after {
+    right: 100%;
+}
+
+.translation-number {
+    color: #8B0000;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.translation-name {
+    color: #333;
+}
+
+.translation-abbr {
+    color: #666;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(90deg, #8B0000 0%, #A52A2A 100%);
+    color: white;
+    margin-top: 60px;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
+}
+
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #8B0000;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    font-size: 1.5em;
+}
+
+.scroll-indicator.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.scroll-indicator:hover {
+    background: #A52A2A;
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5em;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2em;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .topnav a {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+    
+    .translation-card h2 {
+        font-size: 1.8em;
+    }
+    
+    .translation-item {
+        font-size: 1em;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+    <div class="nav-container">
+        <a href="Mainpage.html" class="logo-link">
+            <img src="Logo.jpg" alt="Logo">
+        </a>
+        <div class="nav-links">
+            <a href="Mainpage.html">Home</a>
+            <a href="Sections.html">Bible Sections</a>
+            <a href="Translation.html" class="active">Bible Translations</a>
+            <a href="Whole.html">Whole Bible</a>
+        </div>
+    </div>
+</nav>
+
+<div class="hero">
+    <h1>Bible Translations</h1>
+    <p class="hero-subtitle">God's Word in Every Language</p>
+    <div class="hero-note">
+        📚 Note: This page showcases only some of the many Bible translations available. The Bible has been translated into over 700 languages worldwide!
+    </div>
+</div>
+
+<div class="content-wrapper">
+    <div class="info-banner">
+        <p>The Original Bible was written in <span class="highlight">Hebrew</span> (Old Testament) and <span class="highlight">Greek</span> (New Testament), with some portions in <span class="highlight">Aramaic</span>.</p>
+        <p style="margin-top: 15px;">Today, the Bible is available in many different translations, often with multiple versions for each language to serve different reading levels and purposes.</p>
+    </div>
+
+    <div class="translation-section">
+        <div class="translation-card">
+            <h2><span class="language-icon">🇬🇧</span>English Translations</h2>
+            <div class="translation-list">
+                <div class="translation-item">
+                    <span class="translation-number">1)</span>
+                    <span class="translation-name">Christian Standard Bible</span>
+                    <span class="translation-abbr">- CSB</span>
+                </div>
+                <div class="translation-item">
+                    <span class="translation-number">2)</span>
+                    <span class="translation-name">English Standard Version</span>
+                    <span class="translation-abbr">- ESV</span>
+                </div>
+                <div class="translation-item">
+                    <span class="translation-number">3)</span>
+                    <span class="translation-name">King James Version</span>
+                    <span class="translation-abbr">- KJV</span>
+                </div>
+                <div class="translation-item">
+                    <span class="translation-number">4)</span>
+                    <span class="translation-name">New King James Version</span>
+                    <span class="translation-abbr">- NKJV</span>
+                </div>
+                <div class="translation-item">
+                    <span class="translation-number">5)</span>
+                    <span class="translation-name">New American Standard Bible</span>
+                    <span class="translation-abbr">- NASB</span>
+                </div>
+                <div class="translation-item">
+                    <span class="translation-number">6)</span>
+                    <span class="translation-name">New International Version</span>
+                    <span class="translation-abbr">- NIV</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="translation-section">
+        <div class="translation-card">
+            <h2><span class="language-icon">🇨🇳</span>Chinese Translations</h2>
+            <div class="translation-list">
+                <div class="translation-item">
+                    <span class="translation-number">1)</span>
+                    <span class="translation-name">新标点和合本，神版</span>
+                    <span class="translation-abbr">- CUNPSS - 神</span>
+                </div>
+                <div class="translation-item">
+                    <span class="translation-number">2)</span>
+                    <span class="translation-name">新标点和合本，上帝版</span>
+                    <span class="translation-abbr">- CUNPSS - 上帝</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 About the Bible. All rights reserved.</p>
+    <p>Bringing God's Word to All Nations</p>
+</footer>
+
+<div class="scroll-indicator" id="scrollTop">↑</div>
+
+<script>
+// Scroll to top functionality
+const scrollButton = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollButton.classList.add('visible');
+    } else {
+        scrollButton.classList.remove('visible');
+    }
+});
+
+scrollButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Add staggered animation to translation items
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.translation-section');
+    sections.forEach((section, index) => {
+        section.style.animationDelay = `${index * 0.2}s`;
+    });
+    
+    const items = document.querySelectorAll('.translation-item');
+    items.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.animation = `fadeInUp 0.5s ease-out ${index * 0.1}s forwards`;
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Law - Bible Section</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #CCCCFF 0%, #B8B8FF 50%, #A4A4FF 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.topnav {
+    background: linear-gradient(90deg, #8B0000 0%, #A52A2A 100%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo-link {
+    margin-right: 30px;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.logo-link img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #DAA520;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.nav-links {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.topnav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.topnav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #DAA520;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.topnav a:hover {
+    background-color: #DAA520;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(218, 165, 32, 0.4);
+}
+
+.topnav a:hover::before {
+    width: 80%;
+}
+
+.topnav a.active {
+    background-color: #FF7F50;
+    color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(255, 127, 80, 0.4);
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,255,0.95) 100%);
+    margin: 40px auto;
+    max-width: 1200px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    font-family: 'Times New Roman', serif;
+    font-size: 4em;
+    color: #8B0000;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+}
+
+.hero-subtitle {
+    font-size: 1.4em;
+    color: #555;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 30px;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.info-section {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.info-section h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 2em;
+    color: #8B0000;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #8B0000;
+    padding-bottom: 10px;
+}
+
+.info-section p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.info-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-list li {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #444;
+    padding: 8px 0;
+    padding-left: 30px;
+    position: relative;
+}
+
+.info-list li::before {
+    content: '•';
+    position: absolute;
+    left: 10px;
+    color: #300089;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.books-container {
+    display: grid;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.book-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.book-header {
+    background: linear-gradient(135deg, #300089 0%, #4f269a 100%);
+    padding: 30px;
+    color: white;
+}
+
+.book-title {
+    font-family: 'Arial', serif;
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+.book-chinese {
+    font-size: 1.3em;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.book-subtitle {
+    font-size: 1.2em;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.book-content {
+    padding: 30px;
+}
+
+.book-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    font-family: 'Arial', sans-serif;
+    font-size: 1em;
+    color: #333;
+}
+
+.detail-label {
+    font-weight: bold;
+    color: #300089;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.book-stories {
+    margin-top: 20px;
+}
+
+.book-stories h4 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    color: #300089;
+    margin-bottom: 10px;
+}
+
+.book-stories p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+}
+
+.verses-section {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-top: 40px;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.verses-section h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 2em;
+    color: #8B0000;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 3px solid #8B0000;
+    padding-bottom: 10px;
+}
+
+.verses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.verse-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.verse-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(90deg, #8B0000 0%, #A52A2A 100%);
+    color: white;
+    margin-top: 60px;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
+}
+
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #8B0000;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    font-size: 1.5em;
+}
+
+.scroll-indicator.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.scroll-indicator:hover {
+    background: #A52A2A;
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5em;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2em;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .topnav a {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+    
+    .book-title {
+        font-size: 1.8em;
+    }
+    
+    .book-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .verses-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+    <div class="nav-container">
+        <a href="Mainpage.html" class="logo-link">
+            <img src="Logo.jpg" alt="Logo">
+        </a>
+        <div class="nav-links">
+            <a href="Mainpage.html">Home</a>
+            <a href="Sections.html">Bible Sections</a>
+            <a href="Translation.html">Bible Translations</a>
+            <a href="Whole.html">Whole Bible</a>
+        </div>
+    </div>
+</nav>
+
+<div class="hero">
+    <h1>The Law</h1>
+    <p class="hero-subtitle">The First Section of the Bible</p>
+</div>
+
+<div class="content-wrapper">
+    <div class="info-section">
+        <h2>Also Called...</h2>
+        <ul class="info-list">
+            <li>The Torah</li>
+            <li>The 5 Books of Moses</li>
+        </ul>
+    </div>
+
+    <div class="info-section">
+        <h2>Includes...</h2>
+        <ul class="info-list">
+            <li>The creation of Heaven and Earth</li>
+            <li>Sin entering the world</li>
+            <li>Noah's Ark</li>
+            <li>The Israelites' journey to the Promised Land from Egypt</li>
+            <li>And much more</li>
+        </ul>
+    </div>
+
+    <h2 style="font-family: 'Gill Sans', sans-serif; font-size: 2.5em; color: #300089; text-align: center; margin: 40px 0 30px;">Books of the Law</h2>
+
+    <div class="books-container">
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Genesis</h3>
+                <p class="book-chinese">创世记 / 創世記</p>
+                <p class="book-subtitle">The Book of Beginnings</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Moses
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        During 1400s BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        50
+                    </div>
+                </div>
+                <div class="book-stories">
+                    <h4>Known Stories:</h4>
+                    <p>The Creation, Noah's Ark, The Tower of Babel, Abraham's Call, Joseph and His Brothers</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Exodus</h3>
+                <p class="book-chinese">出埃及记 / 出埃及記</p>
+                <p class="book-subtitle">The Departure</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Moses
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        During 1400s BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        40
+                    </div>
+                </div>
+                <div class="book-stories">
+                    <h4>Known Stories:</h4>
+                    <p>The 10 Plagues, The Exodus from Egypt, Crossing the Red Sea, The Journey in the Wilderness, The Ten Commandments</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Leviticus</h3>
+                <p class="book-chinese">利未记 / 利未記</p>
+                <p class="book-subtitle">Book of Sanctification & Regulations</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Moses
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        During 1400s BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        27
+                    </div>
+                </div>
+                <div class="book-stories">
+                    <h4>Known Content:</h4>
+                    <p>The 5 Main Offerings, Laws of Holy Living, The Day of Atonement, Festivals and Feasts</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Numbers</h3>
+                <p class="book-chinese">民数记 / 民數記</p>
+                <p class="book-subtitle">Journey to the Promised Land</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Moses
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        During 1400s BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        36
+                    </div>
+                </div>
+                <div class="book-stories">
+                    <h4>Known Stories:</h4>
+                    <p>Israel's Rebellion, The Spies and the Promised Land, The Bronze Serpent, Balaam and His Donkey</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Deuteronomy</h3>
+                <p class="book-chinese">申命记 / 申命記</p>
+                <p class="book-subtitle">Restatement of the Law</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Moses
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        During 1400s BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        34
+                    </div>
+                </div>
+                <div class="book-stories">
+                    <h4>Known Content:</h4>
+                    <p>The Great Commandment (Shema), Moses' Final Speeches, Blessings and Curses, Supplementary Requirements</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="verses-section">
+        <h2>Key Verses of Each Book</h2>
+        <div class="verses-grid">
+            <div class="verse-card">
+                <img src="Genesis.jpg" alt="Genesis Key Verse">
+            </div>
+            <div class="verse-card">
+                <img src="Exodus.jpg" alt="Exodus Key Verse">
+            </div>
+            <div class="verse-card">
+                <img src="Leviticus.jpg" alt="Leviticus Key Verse">
+            </div>
+            <div class="verse-card">
+                <img src="Numbers.jpg" alt="Numbers Key Verse">
+            </div>
+            <div class="verse-card">
+                <img src="Deuteronomy.jpg" alt="Deuteronomy Key Verse">
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 About the Bible. All rights reserved.</p>
+    <p>The Foundation of God's Word</p>
+</footer>
+
+<div class="scroll-indicator" id="scrollTop">↑</div>
+
+<script>
+// Scroll to top functionality
+const scrollButton = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollButton.classList.add('visible');
+    } else {
+        scrollButton.classList.remove('visible');
+    }
+});
+
+scrollButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+</script>
+
+</body>
+</html>

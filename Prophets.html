@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prophets - Bible Section</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #b0cbeb 0%, #6b9ad8 50%, #156de0 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.topnav {
+    background: linear-gradient(90deg, #8B0000 0%, #A52A2A 100%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo-link {
+    margin-right: 30px;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.logo-link img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #DAA520;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.nav-links {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.topnav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.topnav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #DAA520;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.topnav a:hover {
+    background-color: #DAA520;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(218, 165, 32, 0.4);
+}
+
+.topnav a:hover::before {
+    width: 80%;
+}
+
+.topnav a.active {
+    background-color: #FF7F50;
+    color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(255, 127, 80, 0.4);
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,255,255,0.95) 100%);
+    margin: 40px auto;
+    max-width: 1200px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    font-family: 'Times New Roman', serif;
+    font-size: 4em;
+    color: #8B0000;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-subtitle {
+    font-size: 1.4em;
+    color: #555;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 30px;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.info-section {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.info-section h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 2em;
+    color: #8B0000;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #8B0000;
+    padding-bottom: 10px;
+}
+
+.info-section p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.info-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-list li {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #444;
+    padding: 8px 0;
+    padding-left: 30px;
+    position: relative;
+}
+
+.info-list li::before {
+    content: '•';
+    position: absolute;
+    left: 10px;
+    color: #8B0000;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.section-divider {
+    text-align: center;
+    margin: 60px 0 40px;
+}
+
+.section-divider h2 {
+    font-family: 'Gill Sans', sans-serif;
+    font-size: 2.5em;
+    color: #156de0;
+    display: inline-block;
+    padding: 20px 40px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.books-container {
+    display: grid;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.book-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.book-header {
+    background: linear-gradient(135deg,#156de0 0%, #6b9ad8 100%);
+    padding: 30px;
+    color: white;
+}
+
+.book-header.minor {
+    background: linear-gradient(135deg,#156de0 0%, #6b9ad8 100%);
+}
+
+.book-title {
+    font-family: 'Arial', serif;
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+.book-chinese {
+    font-size: 1.3em;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.book-subtitle {
+    font-size: 1.2em;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.book-content {
+    padding: 30px;
+}
+
+.book-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.detail-item {
+    font-family: 'Arial', sans-serif;
+    font-size: 1em;
+    color: #333;
+}
+
+.detail-label {
+    font-weight: bold;
+    color: #156de0;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.verses-section {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-top: 40px;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.verses-section h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 2em;
+    color: #8B0000;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 3px solid #8B0000;
+    padding-bottom: 10px;
+}
+
+.verses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.verse-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.verse-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(90deg, #8B0000 0%, #A52A2A 100%);
+    color: white;
+    margin-top: 60px;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
+}
+
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #156de0;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    font-size: 1.5em;
+}
+
+.scroll-indicator.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.scroll-indicator:hover {
+    background: #6b9ad8;
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5em;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2em;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .topnav a {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+    
+    .book-title {
+        font-size: 1.8em;
+    }
+    
+    .book-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .verses-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-divider h2 {
+        font-size: 2em;
+        padding: 15px 30px;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+    <div class="nav-container">
+        <a href="Mainpage.html" class="logo-link">
+            <img src="Logo.jpg" alt="Logo">
+        </a>
+        <div class="nav-links">
+            <a href="Mainpage.html">Home</a>
+            <a href="Sections.html">Bible Sections</a>
+            <a href="Translation.html">Bible Translations</a>
+            <a href="Whole.html">Whole Bible</a>
+        </div>
+    </div>
+</nav>
+
+<div class="hero">
+    <h1>Prophets</h1>
+    <p class="hero-subtitle">The Fourth Section of the Bible</p>
+</div>
+
+<div class="content-wrapper">
+    <div class="info-section">
+        <h2>Includes...</h2>
+        <p>Prophecies of the Messiah and much more</p>
+    </div>
+
+    <div class="info-section">
+        <h2>Structure</h2>
+        <p>The Prophets are split into two parts:</p>
+        <ul class="info-list">
+            <li>Major Prophets - 5 long books</li>
+            <li>Minor Prophets - 12 short books</li>
+        </ul>
+        <p style="margin-top: 15px; font-style: italic;">Note: "Major" and "Minor" refer to the length of the books, not their importance!</p>
+    </div>
+
+    <div class="section-divider">
+        <h2>Major Prophets</h2>
+    </div>
+
+    <div class="books-container">
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Isaiah</h3>
+                <p class="book-chinese">以赛亚书 / 以賽亞書</p>
+                <p class="book-subtitle">The Message of Warning & Hope</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Isaiah
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Between 701-681 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        66
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Poetic, apocalyptic, and narrative
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Jeremiah</h3>
+                <p class="book-chinese">耶利米书 / 耶利米書</p>
+                <p class="book-subtitle">Promise of the Renewal of the Covenant Through the Messiah</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Jeremiah
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Between 626-586 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        52
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Poetic, apocalyptic, and narrative
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Lamentations</h3>
+                <p class="book-chinese">耶利米哀歌 / 耶利米哀歌</p>
+                <p class="book-subtitle">The Voice of Grief We Need to Hear</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Possibly Jeremiah
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        586 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        5
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Poetic
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Ezekiel</h3>
+                <p class="book-chinese">以西结书 / 以西結書</p>
+                <p class="book-subtitle">Hope of the Messianic King</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Ezekiel
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Between 593-571 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        48
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Poetic, apocalyptic, and narrative
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Daniel</h3>
+                <p class="book-chinese">但以理书 / 但以理書</p>
+                <p class="book-subtitle">The Meaning of Being God's People</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Daniel
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Around 535 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        12
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Apocalyptic with narrative parts
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider">
+        <h2>Minor Prophets</h2>
+    </div>
+
+    <div class="books-container">
+        <div class="book-card">
+            <div class="book-header minor">
+                <h3 class="book-title">Hosea</h3>
+                <p class="book-chinese">何西阿书 / 何西阿書</p>
+                <p class="book-subtitle">Message of Repentance</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Hosea
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Around 715 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        14
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Mostly poetic
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header minor">
+                <h3 class="book-title">Joel</h3>
+                <p class="book-chinese">约珥书 / 約珥書</p>
+                <p class="book-subtitle">Prevailing of Justice</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Joel
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Around 835 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        3
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Mostly poetic
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header minor">
+                <h3 class="book-title">Amos</h3>
+                <p class="book-chinese">阿摩司书 / 阿摩司書</p>
+                <p class="book-subtitle">Embracing the True Worship of God</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Amos
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Around 760 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        9
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Poetry and narrative
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header minor">
+                <h3 class="book-title">Obadiah</h3>
+                <p class="book-chinese">俄巴底亚书 / 俄巴底亞書</p>
+                <p class="book-subtitle">God's Promise of Restoring His People & Judgment of Their Enemies</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Obadiah
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Possibly 605-586 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        1
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Poetic
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header minor">
+                <h3 class="book-title">Jonah</h3>
+                <p class="book-chinese">约拿书 / 約拿書</p>
+                <p class="book-subtitle">The Wideness of God's Love</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Jonah
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Around 760 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        4
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Poetry and narrative
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header minor">
+                <h3 class="book-title">Micah</h3>
+                <p class="book-chinese">弥迦书 / 彌迦書</p>
+                <p class="book-subtitle">Judgment & Hope</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Micah
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Between 742-687 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        7
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Poetic
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header minor">
+                <h3 class="book-title">Nahum</h3>
+                <p class="book-chinese">那鸿书 / 那鴻書</p>
+                <p class="book-subtitle">The Lord's Commitment to Justice</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Nahum
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Between 663-612 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        3
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Poetic, apocalyptic, and narrative
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header minor">
+                <h3 class="book-title">Habakkuk</h3>
+                <p class="book-chinese">哈巴谷书 / 哈巴谷書</p>
+                <p class="book-subtitle">Exercise of Faith Amidst Chaos</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Habakkuk
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Around 605 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        3
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Poetic & prose-discourse
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header minor">
+                <h3 class="book-title">Zephaniah</h3>
+                <p class="book-chinese">西番雅书 / 西番雅書</p>
+                <p class="book-subtitle">Relationship Between God's Justice & Love</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Zephaniah
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Between 640-609 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        3
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Poetic & prose-discourse
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header minor">
+                <h3 class="book-title">Haggai</h3>
+                <p class="book-chinese">哈该书 / 哈該書</p>
+                <p class="book-subtitle">God's Calling to Covenant Faithfulness</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Haggai
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        520 BC
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        2
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Style:</span>
+                        Poetic & prose-discourse
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header minor">
+                <h3 class="book-title">Zechariah</h3>
+                <p class="book-chinese">撒迦利亚书 / 撒迦利亞書</p>
+                <p class="book-subtitle">Looking Above the Chaos & Hope for the Coming of God's Kingdom</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Zechariah
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Between 520-480 BC
+                    </div>
+                    <div class="

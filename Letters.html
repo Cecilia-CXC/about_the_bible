@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Letters - Bible Section</title>
+<style>
+* {margin: 0; padding: 0; box-sizing: border-box;}
+body {font-family: Georgia, serif; background: linear-gradient(135deg, #FAEBD7 0%, #F5DEB3 50%, #F0D9A0 100%); min-height: 100vh; color: #333;}
+.topnav {background: linear-gradient(90deg, #8B0000 0%, #A52A2A 100%); box-shadow: 0 4px 15px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1000; animation: slideDown 0.5s ease-out;}
+@keyframes slideDown {from {transform: translateY(-100%); opacity: 0;} to {transform: translateY(0); opacity: 1;}}
+.nav-container {display: flex; align-items: center; padding: 10px 20px; max-width: 1400px; margin: 0 auto;}
+.logo-link {margin-right: 30px; transition: transform 0.3s ease;}
+.logo-link:hover {transform: scale(1.1) rotate(5deg);}
+.logo-link img {width: 60px; height: 60px; border-radius: 50%; border: 3px solid #DAA520; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
+.nav-links {display: flex; gap: 5px; flex-wrap: wrap;}
+.topnav a {color: #f2f2f2; text-decoration: none; padding: 15px 25px; font-size: 18px; border-radius: 8px; transition: all 0.3s ease;}
+.topnav a:hover {background-color: #DAA520; color: #000000; transform: translateY(-2px);}
+.topnav a.active {background-color: #FF7F50; color: #FFFFFF;}
+.hero {text-align: center; padding: 80px 20px 60px; background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,250,240,0.95) 100%); margin: 40px auto; max-width: 1200px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);}
+.hero h1 {font-family: Times New Roman, serif; font-size: 4em; color: #8B0000; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);}
+.hero-subtitle {font-size: 1.4em; color: #555; font-family: Arial, sans-serif;}
+.content-wrapper {max-width: 1200px; margin: 0 auto; padding: 20px;}
+.intro-section {background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 40px; text-align: center;}
+.intro-section p {font-family: Arial, sans-serif; font-size: 1.3em; line-height: 1.8; color: #555;}
+.books-container {display: grid; gap: 30px; margin-top: 40px;}
+.book-card {background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2);}
+.book-header {background: linear-gradient(135deg, #CD853F 0%, #DEB887 100%); padding: 30px; color: white;}
+.book-title {font-family: Arial, serif; font-size: 2.2em; margin-bottom: 10px;}
+.book-chinese {font-size: 1.3em; opacity: 0.9;}
+.book-content {padding: 30px;}
+.book-details {display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 25px; border-radius: 10px; margin-bottom: 15px;}
+.detail-item {font-family: Arial, sans-serif; font-size: 1em; color: #333;}
+.detail-label {font-weight: bold; color: #CD853F; display: block; margin-bottom: 5px;}
+.book-lessons {margin-top: 20px;}
+.book-lessons h4 {font-family: Arial, sans-serif; font-size: 1.2em; color: #CD853F; margin-bottom: 10px;}
+.book-lessons p {font-family: Arial, sans-serif; font-size: 1.1em; color: #555; line-height: 1.6;}
+.verses-section {background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-top: 40px;}
+.verses-section h2 {font-family: Courier New, monospace; font-size: 2em; color: #8B0000; margin-bottom: 30px; text-align: center; border-bottom: 3px solid #8B0000; padding-bottom: 10px;}
+.verses-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;}
+.verse-card {border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);}
+.verse-card img {width: 100%; height: auto; display: block;}
+footer {text-align: center; padding: 30px; background: linear-gradient(90deg, #8B0000 0%, #A52A2A 100%); color: white; margin-top: 60px;}
+.scroll-indicator {position: fixed; bottom: 30px; right: 30px; background: #CD853F; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease; opacity: 0; pointer-events: none; font-size: 1.5em;}
+.scroll-indicator.visible {opacity: 1; pointer-events: all;}
+.scroll-indicator:hover {background: #DEB887; transform: translateY(-5px);}
+@media (max-width: 768px) {
+    .hero h1 {font-size: 2.5em;}
+    .nav-container {flex-direction: column; gap: 10px;}
+    .topnav a {font-size: 16px; padding: 12px 20px;}
+    .book-title {font-size: 1.8em;}
+    .book-details {grid-template-columns: 1fr;}
+    .verses-grid {grid-template-columns: 1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+    <div class="nav-container">
+        <a href="Mainpage.html" class="logo-link"><img src="Logo.jpg" alt="Logo"></a>
+        <div class="nav-links">
+            <a href="Mainpage.html">Home</a>
+            <a href="Sections.html">Bible Sections</a>
+            <a href="Translation.html">Bible Translations</a>
+            <a href="Whole.html">Whole Bible</a>
+        </div>
+    </div>
+</nav>
+
+<div class="hero">
+    <h1>Letters</h1>
+    <p class="hero-subtitle">The Seventh Section of the Bible</p>
+</div>
+
+<div class="content-wrapper">
+    <div class="intro-section">
+        <p>The Epistles (Letters) were written to early churches and individuals, providing instruction, encouragement, and correction for living out the Christian faith.</p>
+    </div>
+
+    <div class="books-container">
+        <div class="book-card"><div class="book-header"><h3 class="book-title">Romans</h3><p class="book-chinese">罗马书 / 羅馬書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Paul</div><div class="detail-item"><span class="detail-label">Written:</span>Around AD 57</div><div class="detail-item"><span class="detail-label">To:</span>The church in Rome</div><div class="detail-item"><span class="detail-label">Chapters:</span>16</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>All have sinned and fall short of God's glory, Salvation is through faith in Jesus Christ alone, Justification by faith, Living a transformed life in Christ</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">1 & 2 Corinthians</h3><p class="book-chinese">哥林多前书 / 哥林多前書 & 哥林多后书 / 哥林多後書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Paul</div><div class="detail-item"><span class="detail-label">Written:</span>Around AD 55</div><div class="detail-item"><span class="detail-label">To:</span>The church in Corinth</div><div class="detail-item"><span class="detail-label">Chapters:</span>16 (1 Cor), 13 (2 Cor)</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>God's wisdom revealed through the Spirit, Unity in the body of Christ, The nature of Christian love (1 Cor 13), Forgiving and loving those who offend you, God's power in our weakness</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">Galatians</h3><p class="book-chinese">加拉太书 / 加拉太書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Paul</div><div class="detail-item"><span class="detail-label">Written:</span>Around AD 49</div><div class="detail-item"><span class="detail-label">To:</span>The churches in Galatia</div><div class="detail-item"><span class="detail-label">Chapters:</span>6</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>There is only one true Gospel, Freedom in Christ vs. slavery to the law, We are all children of God through faith, The fruit of the Spirit</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">Ephesians</h3><p class="book-chinese">以弗所书 / 以弗所書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Paul</div><div class="detail-item"><span class="detail-label">Written:</span>Around AD 60</div><div class="detail-item"><span class="detail-label">To:</span>The church in Ephesus</div><div class="detail-item"><span class="detail-label">Chapters:</span>6</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>Living a life in Christ, Unity in the body of Christ, Walking in love and light, Putting on the full armor of God, Christian family relationships</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">Philippians</h3><p class="book-chinese">腓立比书 / 腓立比書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Paul</div><div class="detail-item"><span class="detail-label">Written:</span>Around AD 61</div><div class="detail-item"><span class="detail-label">To:</span>The church in Philippi</div><div class="detail-item"><span class="detail-label">Chapters:</span>4</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>Joy in all circumstances, Living life worthy of the Gospel, Imitating Christ's humility, Pressing toward the goal in Christ</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">Colossians</h3><p class="book-chinese">歌罗西书 / 歌羅西書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Paul</div><div class="detail-item"><span class="detail-label">Written:</span>Around AD 60</div><div class="detail-item"><span class="detail-label">To:</span>The church in Colossae</div><div class="detail-item"><span class="detail-label">Chapters:</span>4</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>The supremacy of Christ, Living as those made alive in Christ, Setting minds on things above, The Christian household</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">1 & 2 Thessalonians</h3><p class="book-chinese">帖撒罗尼迦前书 / 帖撒羅尼迦前書 & 帖撒罗尼迦后书 / 帖撒羅尼迦後書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Paul</div><div class="detail-item"><span class="detail-label">Written:</span>AD 51 (1 Thess), AD 52 (2 Thess)</div><div class="detail-item"><span class="detail-label">To:</span>The church in Thessalonica</div><div class="detail-item"><span class="detail-label">Chapters:</span>5 (1 Thess), 3 (2 Thess)</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>Living to please God, The return of Christ, Comfort in tribulation, Stay away from idleness, Stand firm in faith</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">1 & 2 Timothy</h3><p class="book-chinese">提摩太前书 / 提摩太前書 & 提摩太后书 / 提摩太後書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Paul</div><div class="detail-item"><span class="detail-label">Written:</span>AD 65 (1 Tim), AD 67 (2 Tim)</div><div class="detail-item"><span class="detail-label">To:</span>Timothy</div><div class="detail-item"><span class="detail-label">Chapters:</span>6 (1 Tim), 4 (2 Tim)</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>The need for prayer and proper worship, Qualifications for church leaders, Dealing with false teachers, Guard the truth, Fight the good fight of faith</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">Titus</h3><p class="book-chinese">提多书 / 提多書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Paul</div><div class="detail-item"><span class="detail-label">Written:</span>Around AD 64</div><div class="detail-item"><span class="detail-label">To:</span>Titus</div><div class="detail-item"><span class="detail-label">Chapters:</span>3</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>Salvation is based on God's grace and mercy, God's grace empowers believers to live godly lives, Qualifications for church elders</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">Philemon</h3><p class="book-chinese">腓利门书 / 腓利門書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Paul</div><div class="detail-item"><span class="detail-label">Written:</span>Around AD 60</div><div class="detail-item"><span class="detail-label">To:</span>Philemon</div><div class="detail-item"><span class="detail-label">Chapters:</span>1</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>Christian forgiveness and reconciliation, We are to love others as Christ loves us, Brotherhood in Christ transcends social status</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">Hebrews</h3><p class="book-chinese">希伯来书 / 希伯來書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Unknown</div><div class="detail-item"><span class="detail-label">Written:</span>Around AD 68</div><div class="detail-item"><span class="detail-label">To:</span>Hebrew Christians</div><div class="detail-item"><span class="detail-label">Chapters:</span>13</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>The supremacy of Christ over all, Jesus as our great High Priest, Faith demonstrated by Old Testament heroes, God disciplines His children, Persevere in faith</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">James</h3><p class="book-chinese">雅各书 / 雅各書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>James (brother of Jesus)</div><div class="detail-item"><span class="detail-label">Written:</span>Between AD 45-50</div><div class="detail-item"><span class="detail-label">To:</span>Jewish Christians scattered abroad</div><div class="detail-item"><span class="detail-label">Chapters:</span>5</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>Faith without works is dead, Loving one another equally without favoritism, Taming the tongue, Wisdom from above, Patience in suffering</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">1 & 2 Peter</h3><p class="book-chinese">彼得前书 / 彼得前書 & 彼得后书 / 彼得後書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Peter</div><div class="detail-item"><span class="detail-label">Written:</span>AD 62-64 (1 Peter), AD 67 (2 Peter)</div><div class="detail-item"><span class="detail-label">To:</span>Scattered believers in Asia Minor</div><div class="detail-item"><span class="detail-label">Chapters:</span>5 (1 Peter), 3 (2 Peter)</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>Hope in suffering as believers of Christ, Living as God's chosen people, The destruction of false teachers, Growing in Christian maturity</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">1, 2 & 3 John</h3><p class="book-chinese">约翰一书 / 約翰一書 & 约翰二书 / 約翰二書 & 约翰三书 / 約翰三書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>John (the apostle)</div><div class="detail-item"><span class="detail-label">Written:</span>Around AD 90</div><div class="detail-item"><span class="detail-label">To:</span>Early Christians in house churches</div><div class="detail-item"><span class="detail-label">Chapters:</span>5 (1 John), 1 (2 John), 1 (3 John)</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>God is light and love, Walking in truth and love, Assurance of salvation, Loving our neighbor as ourselves, Testing the spirits</p></div></div></div>
+
+        <div class="book-card"><div class="book-header"><h3 class="book-title">Jude</h3><p class="book-chinese">犹大书 / 猶大書</p></div><div class="book-content"><div class="book-details"><div class="detail-item"><span class="detail-label">Author:</span>Jude (brother of James & Jesus)</div><div class="detail-item"><span class="detail-label">Written:</span>Around AD 65</div><div class="detail-item"><span class="detail-label">To:</span>Believers called and loved by God</div><div class="detail-item"><span class="detail-label">Chapters:</span>1</div></div><div class="book-lessons"><h4>Key Lessons:</h4><p>Contend for the faith, Warning against false teachers, God's judgment and justice, Building yourselves up in faith</p></div></div></div>
+    </div>
+
+    <div class="verses-section">
+        <h2>Key Verses of Each Book</h2>
+        <div class="verses-grid">
+            <div class="verse-card"><img src="l1.jpg" alt="Romans"></div>
+            <div class="verse-card"><img src="l2.jpg" alt="1 Corinthians"></div>
+            <div class="verse-card"><img src="l3.jpg" alt="2 Corinthians"></div>
+            <div class="verse-card"><img src="l4.jpg" alt="Galatians"></div>
+            <div class="verse-card"><img src="l5.jpg" alt="Ephesians"></div>
+            <div class="verse-card"><img src="l6.jpg" alt="Philippians"></div>
+            <div class="verse-card"><img src="l7.jpg" alt="Colossians"></div>
+            <div class="verse-card"><img src="l8.jpg" alt="1 Thessalonians"></div>
+            <div class="verse-card"><img src="l9.jpg" alt="2 Thessalonians"></div>
+            <div class="verse-card"><img src="l10.jpg" alt="1 Timothy"></div>
+            <div class="verse-card"><img src="l11.jpg" alt="2 Timothy"></div>
+            <div class="verse-card"><img src="l12.jpg" alt="Titus"></div>
+            <div class="verse-card"><img src="l13.jpg" alt="Philemon"></div>
+            <div class="verse-card"><img src="l14.jpg" alt="Hebrews"></div>
+            <div class="verse-card"><img src="l15.jpg" alt="James"></div>
+            <div class="verse-card"><img src="l16.jpg" alt="1 Peter"></div>
+            <div class="verse-card"><img src="l17.jpg" alt="2 Peter"></div>
+            <div class="verse-card"><img src="l18.jpg" alt="1 John"></div>
+            <div class="verse-card"><img src="l19.jpg" alt="2 John"></div>
+            <div class="verse-card"><img src="l20.jpg" alt="3 John"></div>
+            <div class="verse-card"><img src="l21.jpg" alt="Jude"></div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 About the Bible. All rights reserved.</p>
+    <p>Living Letters of Faith</p>
+</footer>
+
+<div class="scroll-indicator" id="scrollTop">↑</div>
+
+<script>
+const scrollButton = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+    scrollButton.classList.toggle('visible', window.pageYOffset > 300);
+});
+scrollButton.addEventListener('click', () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+});
+</script>
+
+</body>
+</html>

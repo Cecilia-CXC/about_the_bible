@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gospels - Bible Section</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #FFB7C5 0%, #FF9FB0 50%, #FF87A0 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.topnav {
+    background: linear-gradient(90deg, #8B0000 0%, #A52A2A 100%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo-link {
+    margin-right: 30px;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.logo-link img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #DAA520;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.nav-links {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.topnav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.topnav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #DAA520;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.topnav a:hover {
+    background-color: #DAA520;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(218, 165, 32, 0.4);
+}
+
+.topnav a:hover::before {
+    width: 80%;
+}
+
+.topnav a.active {
+    background-color: #FF7F50;
+    color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(255, 127, 80, 0.4);
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,250,252,0.95) 100%);
+    margin: 40px auto;
+    max-width: 1200px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    font-family: 'Times New Roman', serif;
+    font-size: 4em;
+    color: #8B0000;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-subtitle {
+    font-size: 1.4em;
+    color: #555;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 30px;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.info-section {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.info-section h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 2em;
+    color: #8B0000;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #8B0000;
+    padding-bottom: 10px;
+}
+
+.info-section p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.info-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-list li {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #444;
+    padding: 8px 0;
+    padding-left: 30px;
+    position: relative;
+}
+
+.info-list li::before {
+    content: '•';
+    position: absolute;
+    left: 10px;
+    color: #8B0000;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.books-container {
+    display: grid;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.book-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.book-header {
+    background: linear-gradient(135deg, #DC143C 0%, #FF1493 100%);
+    padding: 30px;
+    color: white;
+}
+
+.book-title {
+    font-family: 'Arial', serif;
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+.book-chinese {
+    font-size: 1.3em;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.book-subtitle {
+    font-size: 1.2em;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.book-content {
+    padding: 30px;
+}
+
+.book-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    font-family: 'Arial', sans-serif;
+    font-size: 1em;
+    color: #333;
+}
+
+.detail-label {
+    font-weight: bold;
+    color: #DC143C;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.book-stories {
+    margin-top: 20px;
+}
+
+.book-stories h4 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    color: #DC143C;
+    margin-bottom: 10px;
+}
+
+.book-stories p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+}
+
+.verses-section {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-top: 40px;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.verses-section h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 2em;
+    color: #8B0000;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 3px solid #8B0000;
+    padding-bottom: 10px;
+}
+
+.verses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.verse-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.verse-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(90deg, #8B0000 0%, #A52A2A 100%);
+    color: white;
+    margin-top: 60px;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
+}
+
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #DC143C;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    font-size: 1.5em;
+}
+
+.scroll-indicator.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.scroll-indicator:hover {
+    background: #FF1493;
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5em;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2em;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .topnav a {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+    
+    .book-title {
+        font-size: 1.8em;
+    }
+    
+    .book-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .verses-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+    <div class="nav-container">
+        <a href="Mainpage.html" class="logo-link">
+            <img src="Logo.jpg" alt="Logo">
+        </a>
+        <div class="nav-links">
+            <a href="Mainpage.html">Home</a>
+            <a href="Sections.html">Bible Sections</a>
+            <a href="Translation.html">Bible Translations</a>
+            <a href="Whole.html">Whole Bible</a>
+        </div>
+    </div>
+</nav>
+
+<div class="hero">
+    <h1>The Gospels</h1>
+    <p class="hero-subtitle">The Fifth Section of the Bible</p>
+</div>
+
+<div class="content-wrapper">
+    <div class="info-section">
+        <h2>Also Called...</h2>
+        <p>The Good News</p>
+    </div>
+
+    <div class="info-section">
+        <h2>Includes...</h2>
+        <ul class="info-list">
+            <li>The Birth of Christ</li>
+            <li>Jesus' Ministry on Earth</li>
+            <li>Jesus' Death & Resurrection</li>
+            <li>And much more</li>
+        </ul>
+    </div>
+
+    <h2 style="font-family: 'Gill Sans', sans-serif; font-size: 2.5em; color: #DC143C; text-align: center; margin: 40px 0 30px;">The Four Gospels</h2>
+
+    <div class="books-container">
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Matthew</h3>
+                <p class="book-chinese">马太福音 / 馬太福音</p>
+                <p class="book-subtitle">Jesus, the Son of David Who Establishes the Kingdom of Heaven</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Matthew (Levi)
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Possibly between AD 60-70
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        28
+                    </div>
+                </div>
+                <div class="book-stories">
+                    <h4>Unique Events:</h4>
+                    <p>The announcement of Jesus' birth to Joseph by an angel in a dream, The visit of the Magi, The Sermon on the Mount, The Great Commission</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Mark</h3>
+                <p class="book-chinese">马可福音 / 馬可福音</p>
+                <p class="book-subtitle">Jesus, the Son of God Who Suffers to Ransom Others</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        John Mark
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Possibly between AD 55-65
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        16
+                    </div>
+                </div>
+                <div class="book-stories">
+                    <h4>Unique Events:</h4>
+                    <p>The fleeing of a young man leaving his garment behind, Emphasis on Jesus as a man of action and the suffering servant, The shortest Gospel account</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">Luke</h3>
+                <p class="book-chinese">路加福音 / 路加福音</p>
+                <p class="book-subtitle">Jesus, the Savior Seeking the Lost</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        Luke (Physician)
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Around AD 60
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        24
+                    </div>
+                </div>
+                <div class="book-stories">
+                    <h4>Unique Stories:</h4>
+                    <p>Birth of John the Baptist, The parable of the Good Samaritan, The parable of the Prodigal Son, The repentance of the thief on the cross</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-header">
+                <h3 class="book-title">John</h3>
+                <p class="book-chinese">约翰福音 / 約翰福音</p>
+                <p class="book-subtitle">Jesus, the Lamb of God Bringing Eternal Life</p>
+            </div>
+            <div class="book-content">
+                <div class="book-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Author:</span>
+                        John (The Beloved)
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Written:</span>
+                        Possibly around AD 85-90
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Chapters:</span>
+                        21
+                    </div>
+                </div>
+                <div class="book-stories">
+                    <h4>Unique Stories:</h4>
+                    <p>The turning of water into wine at Cana, Jesus and Nicodemus, The woman at the well, The raising of Lazarus, The washing of the disciples' feet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="verses-section">
+        <h2>Key Verses of Each Book</h2>
+        <div class="verses-grid">
+            <div class="verse-card">
+                <img src="Matthew.jpg" alt="Matthew Key Verse">
+            </div>
+            <div class="verse-card">
+                <img src="Mark.jpg" alt="Mark Key Verse">
+            </div>
+            <div class="verse-card">
+                <img src="Luke.jpg" alt="Luke Key Verse">
+            </div>
+            <div class="verse-card">
+                <img src="John.jpg" alt="John Key Verse">
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 About the Bible. All rights reserved.</p>
+    <p>The Good News of Jesus Christ</p>
+</footer>
+
+<div class="scroll-indicator" id="scrollTop">↑</div>
+
+<script>
+// Scroll to top functionality
+const scrollButton = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollButton.classList.add('visible');
+    } else {
+        scrollButton.classList.remove('visible');
+    }
+});
+
+scrollButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+</script>
+
+</body>
+</html>

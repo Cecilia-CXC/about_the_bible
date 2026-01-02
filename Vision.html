@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision - Bible Section</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #EEE8AA 0%, #F0E68C 50%, #DAA520 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.topnav {
+    background: linear-gradient(90deg, #8B0000 0%, #A52A2A 100%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo-link {
+    margin-right: 30px;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.logo-link img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #DAA520;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.nav-links {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.topnav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.topnav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #DAA520;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.topnav a:hover {
+    background-color: #DAA520;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(218, 165, 32, 0.4);
+}
+
+.topnav a:hover::before {
+    width: 80%;
+}
+
+.topnav a.active {
+    background-color: #FF7F50;
+    color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(255, 127, 80, 0.4);
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,250,235,0.95) 100%);
+    margin: 40px auto;
+    max-width: 1200px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    font-family: 'Times New Roman', serif;
+    font-size: 4em;
+    color: #8B0000;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-subtitle {
+    font-size: 1.4em;
+    color: #555;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 30px;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.intro-section {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.intro-section h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 2em;
+    color: #8B0000;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #8B0000;
+    padding-bottom: 10px;
+}
+
+.intro-section p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #444;
+}
+
+.book-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.6s ease-out;
+    margin-bottom: 40px;
+}
+
+.book-header {
+    background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
+    padding: 40px;
+    color: white;
+}
+
+.also-called {
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+    opacity: 0.9;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.book-title {
+    font-family: 'Arial', serif;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.book-chinese {
+    font-size: 1.4em;
+    opacity: 0.9;
+    margin-bottom: 15px;
+}
+
+.book-subtitle {
+    font-size: 1.3em;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.book-content {
+    padding: 40px;
+}
+
+.book-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.detail-item {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.detail-label {
+    font-weight: bold;
+    color: #B8860B;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.book-events {
+    margin-top: 25px;
+}
+
+.book-events h4 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.3em;
+    color: #B8860B;
+    margin-bottom: 15px;
+}
+
+.book-events p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.8;
+}
+
+.description-section {
+    background: linear-gradient(135deg, #FFF8DC 0%, #FFEFD5 100%);
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+.description-section h4 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.3em;
+    color: #B8860B;
+    margin-bottom: 15px;
+}
+
+.description-section p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.8;
+}
+
+.verses-section {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-top: 40px;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.verses-section h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 2em;
+    color: #8B0000;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 3px solid #8B0000;
+    padding-bottom: 10px;
+}
+
+.verse-card {
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.verse-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(90deg, #8B0000 0%, #A52A2A 100%);
+    color: white;
+    margin-top: 60px;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
+}
+
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #B8860B;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    font-size: 1.5em;
+}
+
+.scroll-indicator.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.scroll-indicator:hover {
+    background: #DAA520;
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5em;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2em;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .topnav a {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+    
+    .book-title {
+        font-size: 2em;
+    }
+    
+    .book-details {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+    <div class="nav-container">
+        <a href="Mainpage.html" class="logo-link">
+            <img src="Logo.jpg" alt="Logo">
+        </a>
+        <div class="nav-links">
+            <a href="Mainpage.html">Home</a>
+            <a href="Sections.html">Bible Sections</a>
+            <a href="Translation.html">Bible Translations</a>
+            <a href="Whole.html">Whole Bible</a>
+        </div>
+    </div>
+</nav>
+
+<div class="hero">
+    <h1>Vision</h1>
+    <p class="hero-subtitle">The Eighth & Final Section of the Bible</p>
+</div>
+
+<div class="content-wrapper">
+    <div class="intro-section">
+        <h2>Also Called...</h2>
+        <p>John's Letter of What's to Come</p>
+    </div>
+
+    <div class="intro-section">
+        <h2>About This Section</h2>
+        <p>The Book of Revelation is the prophetic conclusion to God's redemptive story, revealing the ultimate triumph of Christ and the restoration of all creation. Written in apocalyptic imagery, it provides hope and encouragement to believers facing persecution while unveiling the glorious future that awaits God's people.</p>
+    </div>
+
+    <div class="book-card">
+        <div class="book-header">
+            <p class="also-called">The Final Book of the Bible</p>
+            <h3 class="book-title">Revelation</h3>
+            <p class="book-chinese">启示录 / 啟示錄</p>
+            <p class="book-subtitle">The Return of Jesus as the Ultimate King</p>
+        </div>
+        <div class="book-content">
+            <div class="book-details">
+                <div class="detail-item">
+                    <span class="detail-label">Author:</span>
+                    John (the Apostle)
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Written:</span>
+                    Around AD 95
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Chapters:</span>
+                    22
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Genre:</span>
+                    Apocalyptic Prophecy
+                </div>
+            </div>
+            
+            <div class="book-events">
+                <h4>Major Events & Themes:</h4>
+                <p>The glorified Christ among the seven churches, Letters to the seven churches in Asia, The throne room of Heaven, The seven seals, trumpets, and bowls of God's judgment, The two witnesses, The woman and the dragon, The Beast and false prophet, The fall of Babylon, The Second Coming of Christ, The Millennial Kingdom, The Great White Throne Judgment, The New Heaven and New Earth, The New Jerusalem</p>
+            </div>
+
+            <div class="description-section">
+                <h4>About This Book:</h4>
+                <p>Revelation, the climactic finale of Scripture, unveils God's ultimate plan for humanity and creation. Written by the Apostle John while exiled on the island of Patmos, this book uses vivid apocalyptic imagery to reveal Jesus Christ in His full glory as the conquering King. The book addresses seven churches in Asia Minor, offering both commendation and correction, while revealing the cosmic spiritual battle between good and evil.</p>
+                <p style="margin-top: 15px;">The central message is one of hope: despite present suffering and persecution, God is sovereign, Christ is victorious, and His people will reign with Him eternally. The book culminates with the vision of a New Heaven and New Earth, where God dwells with His people, wiping away every tear, and making all things new. It assures believers that history is moving toward God's glorious purpose, encouraging them to remain faithful until Christ's return.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="verses-section">
+        <h2>Key Verse</h2>
+        <div class="verse-card">
+            <img src="66.jpg" alt="Revelation Key Verse">
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 About the Bible. All rights reserved.</p>
+    <p>Behold, I Am Coming Soon - Revelation 22:12</p>
+</footer>
+
+<div class="scroll-indicator" id="scrollTop">↑</div>
+
+<script>
+// Scroll to top functionality
+const scrollButton = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollButton.classList.add('visible');
+    } else {
+        scrollButton.classList.remove('visible');
+    }
+});
+
+scrollButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+</script>
+
+</body>
+</html>
